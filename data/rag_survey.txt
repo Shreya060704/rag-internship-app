@@ -1,0 +1,43 @@
+Retrieval-Augmented Generation: A Survey
+
+Abstract
+Retrieval-Augmented Generation (RAG) combines large language models (LLMs) with external knowledge sources to improve factual accuracy. By integrating retrieval and generation, RAG reduces hallucinations and enables dynamic knowledge grounding.
+
+1. Introduction
+Traditional language models rely solely on pretraining data, which becomes outdated quickly. RAG addresses this by connecting the model to a live knowledge base, such as a vector database.
+
+2. Core Components
+
+Chunking: Breaking long documents into smaller passages for indexing.
+
+Embeddings: Mapping text into high-dimensional vectors that capture semantic meaning.
+
+Vector Database: Specialized databases like Pinecone that store and retrieve embeddings efficiently.
+
+Reranking: Models such as Cohere’s reranker reorder retrieved results for better relevance.
+
+Generation: A language model, e.g., BART or GPT, generates a final answer conditioned on retrieved context.
+
+3. Applications
+RAG has shown strong results in:
+
+Open-domain question answering
+
+Enterprise document search
+
+Chatbots with up-to-date knowledge
+
+Research assistants
+
+4. Challenges
+
+Efficient chunking for large corpora
+
+Handling noisy retrieval results
+
+Balancing latency with accuracy
+
+Integrating multimodal data (e.g., text + images)
+
+5. Conclusion
+RAG provides a powerful framework for combining retrieval and generation, enhancing both factual accuracy and adaptability. Future work should focus on evaluation benchmarks and real-world deployments.

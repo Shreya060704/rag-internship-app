@@ -1,0 +1,4 @@
+Artificial Intelligence (AI) is the simulation of human intelligence in machines.
+AI systems can perform tasks such as learning, reasoning, problem-solving, and language understanding.
+Machine Learning (ML) is a subset of AI where systems learn from data without being explicitly programmed.
+Deep Learning, a type of ML, uses neural networks with multiple layers to model complex patterns in data.

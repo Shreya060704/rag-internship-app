@@ -1,0 +1,4 @@
+Cohere provides language models for text generation, embeddings, and reranking.
+The reranker model takes a query and a set of documents, then reorders them by relevance.
+This improves search quality by pushing the most useful results higher.
+Cohere's reranker is commonly used alongside vector search systems like Pinecone.

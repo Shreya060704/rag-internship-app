@@ -1,0 +1,8 @@
+Retrieval-Augmented Generation (RAG) is a technique where a language model retrieves external information before generating an answer.
+RAG improves factual accuracy and allows models to answer questions outside their training data.
+The pipeline usually includes:
+1. Chunking documents
+2. Creating embeddings
+3. Storing in a vector database
+4. Retrieving top results
+5. Reranking and generating a final answer
