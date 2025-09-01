@@ -18,7 +18,7 @@ if index_name not in [idx["name"] for idx in pc.list_indexes()]:
         metric="cosine",
         spec=ServerlessSpec(cloud="aws", region="us-east-1")
     )
-    print(f"✅ Created new Pinecone index: {index_name}")
+    print(f"Created new Pinecone index: {index_name}")
 
 index = pc.Index(index_name)
 
@@ -46,7 +46,7 @@ def load_documents(data_folder="data"):
     return documents
 
 docs = load_documents("data")
-print(f"📂 Loaded {len(docs)} documents from data/ folder")
+print(f"Loaded {len(docs)} documents from data/ folder")
 
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 
@@ -57,7 +57,7 @@ for doc in docs:
         chunk.metadata["source"] = doc["source"]  
         chunks.append(chunk)
 
-print(f"✂️ Split into {len(chunks)} chunks")
+print(f"Split into {len(chunks)} chunks")
 
 
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -73,4 +73,4 @@ for i, chunk in enumerate(chunks):
 
 index.upsert(vectors)
 
-print(f"✅ Successfully uploaded {len(vectors)} chunks to Pinecone index '{index_name}'")
+print(f"Successfully uploaded {len(vectors)} chunks to Pinecone index '{index_name}'")
