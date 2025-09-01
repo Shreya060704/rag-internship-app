@@ -11,12 +11,20 @@ COHERE_API_KEY = st.secrets["COHERE_API_KEY"]
 pc = Pinecone(api_key=PINECONE_API_KEY)
 index_name = "rag-internship-index"
 index = pc.Index(index_name)
-
-embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 co = cohere.Client(COHERE_API_KEY)
 
 
-answer_generator = pipeline("summarization", model="facebook/bart-large-cnn")
+@st.cache_resource
+def load_embedding_model():
+    return SentenceTransformer("all-MiniLM-L6-v2")
+
+@st.cache_resource
+def load_answer_generator():
+   
+    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
+
+embedding_model = load_embedding_model()
+answer_generator = load_answer_generator()
 
 
 st.set_page_config(page_title="RAG Internship App", page_icon="📘", layout="wide")
@@ -27,7 +35,6 @@ st.markdown("### Retrieval-Augmented Generation with Pinecone, Cohere & Hugging 
 st.sidebar.header("⚙️ Settings")
 top_k = st.sidebar.slider("Top K Results", 1, 10, 3)
 relevance_threshold = st.sidebar.slider("Relevance Threshold", 0.0, 1.0, 0.3)
-
 
 sample_questions = [
     "What is Artificial Intelligence (AI)?",
@@ -55,7 +62,6 @@ if selected_q:
     query = selected_q
 else:
     query = st.text_input("🔎 Ask a question:")
-
 
 if query:
     query_vector = embedding_model.encode(query).tolist()
@@ -104,8 +110,8 @@ if query:
 
             response = answer_generator(
                 f"Question: {query}\nContext: {context}",
-                max_length=120,
-                min_length=40,
+                max_length=100,
+                min_length=30,
                 do_sample=False
             )
             answer = response[0]["summary_text"]
